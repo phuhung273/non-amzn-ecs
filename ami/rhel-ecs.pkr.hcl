@@ -32,6 +32,11 @@ build {
 
   provisioner "shell" {
     inline = [
+      "sudo yum install -y yum-utils",
+      "sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo",
+      "sudo yum install -y docker-ce",
+      "sudo systemctl enable docker.service",
+      "sudo systemctl enable containerd.service",
       "curl -O https://s3.us-east-1.amazonaws.com/amazon-ecs-agent-us-east-1/amazon-ecs-init-latest.x86_64.rpm",
       "sudo yum localinstall -y amazon-ecs-init-latest.x86_64.rpm",
     ]
